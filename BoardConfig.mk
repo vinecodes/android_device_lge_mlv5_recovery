@@ -17,16 +17,15 @@
 DEVICE_PATH := device/lge/mlv5
 
 # Platform (TBD)
-TARGET_BOARD_PLATFORM := 
-TARGET_BOARD_PLATFORM_GPU := 
+TARGET_BOARD_PLATFORM := mt6750
 
-# Bootloader (TBD)
-TARGET_BOOTLOADER_BOARD_NAME := 
+# Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := mt6755
 TARGET_NO_BOOTLOADER := true
 
-# Architecture (TBD)
+# Architecture
 TARGET_ARCH := arm
-TARGET_ARCH_VARIANT := 
+TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a53
@@ -42,19 +41,20 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 12285097984 # 11997166 * 1024 mmcblk0p39
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,32N2 androidboot.hardware=mlv5
 BOARD_KERNEL_BASE := 0x40000000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_MKBOOTIMG_ARGS :=  --ramdisk_offset 0x05000000 --tags_offset 0x04000000 --dt device/lge/mlv5/recovery/dt.img
+BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x05000000 --tags_offset 0x04000000
 
-# Qualcomm support
-BOARD_USES_QCOM_HARDWARE := false
+TARGET_RECOVERY_FSTAB := device/lge/mlv5/twrp.fstab
 
-# Recovery (TBD)
+# Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_USERIMAGES_USE_EXT4 := true
 #TARGET_USERIMAGES_USE_F2FS := true
 TARGET_PREBUILT_KERNEL := device/lge/mlv5/recovery/kernel
 
-# TWRP (TBD)
+# TWRP
 TW_THEME := portrait_hdpi
-TARGET_RECOVERY_QCOM_RTC_FIX := true
-TW_SCREEN_BLANK_ON_BOOT := true
-TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+TW_INCLUDE_CRYPTO := true
+BOARD_SUPPRESS_EMMC_WIPE := true
+BOARD_HAS_NO_REAL_SDCARD := true
+TW_BRIGHTNESS_PATH := /sys/devices/platform/leds-mt65xx/leds/lcd-backlight/brightness
